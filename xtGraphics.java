@@ -2474,7 +2474,10 @@ public class xtGraphics extends Panel implements Runnable {
                         cntan = 20;
                     }
                 }
-                rd.drawImage(overlaystatus, 0, 0, null);
+                
+                if(!control.toggle){
+                         rd.drawImage(overlay, 0, 0, null);
+                       } 
                 if(starcnt > 0) {
                    rd.setColor(new Color(255, 255, 255));
                    rd.setFont(new Font("Adventure", 1, 35));
@@ -2483,13 +2486,14 @@ public class xtGraphics extends Panel implements Runnable {
                 }
                 
                 if (!holdit && fase != -6 && starcnt == 0) {
+                    
                     int num_cars = nplayers;
                     for (int array_one = 0; array_one < num_cars; array_one++) {
                         boolean flag_status = false;
                         for (int array_two = 0; array_two < num_cars; array_two++) {
                             if (checkpoints.pos[array_two] == array_one && checkpoints.dested[array_two] == 0 && !flag_status) {
-                                int y_value = 30; // use to move status up or down
-                                int x_value = 115;  // use to move status left or right
+                                int y_value = 32; // use to move status up or down
+                                int x_value = 105;  // use to move status left or right
                                 
                                 rd.setFont(new Font("Adventure", 1, 15));
                                 FontHandler.fMetrics = rd.getFontMetrics();
@@ -2498,18 +2502,18 @@ public class xtGraphics extends Panel implements Runnable {
  
                                 rd.setColor(new Color(255, 255, 255));
                                 if (array_one == 0)
-                                    rd.drawString("1st",50 + x_value * array_one, 490);
+                                    rd.drawString("1st",21 + x_value * array_one, 490);
                                 if (array_one == 1)
-                                    rd.drawString("2nd",50 + x_value * array_one, 490);
+                                    rd.drawString("2nd",21 + x_value * array_one, 490);
                                 if (array_one == 2)
-                                    rd.drawString("3rd",50 + x_value * array_one, 490);
+                                    rd.drawString("3rd",21 + x_value * array_one, 490);
                                 if (array_one >= 3)
-                                    rd.drawString((array_one + 1)+"th", 50 + x_value * array_one, 490);
+                                    rd.drawString((array_one + 1)+"th", 21 + x_value * array_one, 490);
                                     
                                     
                                     
                                 rd.setColor(new Color(255, 255, 255));
-                                rd.drawString(names[sc[array_two]], 63 + x_value * array_one, 472);
+                                rd.drawString(names[sc[array_two]], 29 + x_value * array_one, 472);
                                 if (madness[0].im == array_two){
                                     int red = (int) (159.0F + (159.0F * ((float) m.snap[0] / 100.0F)));
                                     if (red > 255)
@@ -2527,9 +2531,9 @@ public class xtGraphics extends Panel implements Runnable {
                                     if (blue < 0)
                                         blue = 0;
                                     rd.setColor(new Color(182, 0, 0));
-                                    rd.drawRect(42 + x_value * array_one, 456, 115, 35);
+                                    rd.drawRect(19 + x_value * array_one, 456, 105, 35);
                                     //rd.drawRect(531 1 less + x_value, 58 1 less + y_value + 30 * array_one, 114, 25);
-                                    rd.drawRect(42 + x_value * array_one, 456, 115, 35);
+                                    
                                 }
                                 if(arrace) {
                                     int dmg = (int)(60F * ((float)madness[array_two].hitmag / (float)madness[array_two].maxmag[sc[array_two]]));
@@ -2562,10 +2566,10 @@ public class xtGraphics extends Panel implements Runnable {
                                         blue = 0;
  
                                     rd.setColor(new Color(red, green, blue));
-                                    rd.fillRect(80 + x_value * array_one, 480, dmg, 5);
+                                    rd.fillRect(49 + x_value * array_one, 480, dmg, 5);
  
                                     rd.setColor(new Color(0, 0, 0));
-                                    rd.drawRect(80 + x_value * array_one, 480, 60, 5);
+                                    rd.drawRect(49 + x_value * array_one, 480, 60, 5);
                                 } else { //comeback
                                     float power = madness[array_two].power;
  
@@ -2607,10 +2611,10 @@ public class xtGraphics extends Panel implements Runnable {
                                     
                                     //rd.fillRect(565 + x_value, 75 + y_value + 30 * array_one, (int)((power / 98F) * 60F), 5);
                                     
-                                    rd.fillRect(80 + x_value * array_one, 480,(int)((power / 98F) * 60F), 5);
+                                    rd.fillRect(49 + x_value * array_one, 480,(int)((power / 98F) * 60F), 5);
                                     
                                     rd.setColor(new Color(0, 0, 0));
-                                    rd.drawRect(80 + x_value * array_one, 480, 60, 5);
+                                    rd.drawRect(49 + x_value * array_one, 480, 60, 5);
                                 }
                                 flag_status = true;
                             }
@@ -2659,9 +2663,7 @@ public class xtGraphics extends Panel implements Runnable {
                 }
                 if (m.flex != 2 || m.flex == 2) { //ONSCREEN
                        rd.setColor(new Color(m.csky[0], m.csky[1], m.csky[2]));
-                       if(!control.toggle){
-                         rd.drawImage(overlay, 0, 0, null);
-                       } 
+                       
                     
                        
                        //ORANGE COLOR
@@ -2670,25 +2672,25 @@ public class xtGraphics extends Panel implements Runnable {
                     
                        //GUI TEXT
                       
-                       rd.drawImage(laptext, 2, 2, null);
-                       rd.drawImage(wastedtext, 102, 2, null);
+                       rd.drawImage(laptext, 14, 21, null);
+                       rd.drawImage(wastedtext, 108, 21, null);
                        
                        //TURN WHITE
                        rd.setColor(new Color(255, 255, 255));
                        //GUI TEXT
-                       rd.drawImage(damagebar, 690, 3, null);
-                       rd.drawImage(powerbar, 690, 27, null);
+                       rd.drawImage(damagebar, 677, 21, null);
+                       rd.drawImage(powerbar, 677, 47, null);
                        //LAPS
                        
-                       rd.drawString("  " + (madness[0].nlaps + 1) + " / " + checkpoints.nlaps + "", 46, 21);
+                       rd.drawString("  " + (madness[0].nlaps + 1) + " / " + checkpoints.nlaps + "", 56, 40);
                      
-                       rd.drawString("  " + checkpoints.wasted + " / " + (nplayers - 1), 178, 21);
+                       rd.drawString("  " + checkpoints.wasted + " / " + (nplayers - 1), 181, 40);
                        //CHANGE SIZE
                        rd.setColor(new Color(182, 0, 0));
                        rd.setFont(new Font("Adventure", 1, 18));
                     
                        //POSITION
-                       rd.drawImage(postext, 29, 25, null);
+                       rd.drawImage(postext, 36, 50, null);
                        
                        //CHANGE WHITE
                        rd.setColor(new Color(255, 255, 255));
@@ -2713,7 +2715,7 @@ public class xtGraphics extends Panel implements Runnable {
                        //CHANGE SIZE
                        rd.setFont(new Font("Adventure", 1, 30));
                        FontHandler.fMetrics = rd.getFontMetrics();
-                       rd.drawString("" + position + suffix + "", 139, 51);
+                       rd.drawString("" + position + suffix + "", 150, 76);
                        //CHANGE BACK}
                        
                        
@@ -2722,8 +2724,8 @@ public class xtGraphics extends Panel implements Runnable {
                        FontHandler.fMetrics = rd.getFontMetrics();
                        
                        rd.setColor(new Color(182, 0, 0));
-                       rd.drawImage(timetext, 119, 418, null);
-                       rd.drawImage(kph, 643, 415, null);
+                       rd.drawImage(timetext, 27, 414, null);
+                       rd.drawImage(kph, 790, 468, null);
                        rd.drawString("", 660,438);
                        //the timer
                        
@@ -2737,10 +2739,10 @@ public class xtGraphics extends Panel implements Runnable {
                        String timer = this.getTime(millis);
                       
                        rd.setColor(new Color(255, 255, 255));
-                       rd.drawString(timer, 186, 438);
+                       rd.drawString(timer, 94, 434);
                        
                        
-                       rd.drawString("" + speed, 715,438);
+                       rd.drawString("" + speed, 847, 489);
                     
                        rd.setFont(new Font("SansSerif", 1, 11));
                        FontHandler.fMetrics = rd.getFontMetrics();
@@ -3699,15 +3701,19 @@ public class xtGraphics extends Panel implements Runnable {
              j = i;
           }
         
+          
+          //rd.drawImage(damagebar, 677, 21, null);
+          // rd.drawImage(powerbar, 677, 47, null);
+          
         int k = (int) (98F * ((float) j / (float) i));
-        ai[0] = 777;
-        ai1[0] = 11;
-        ai[1] = 777;
-        ai1[1] = 20;
-        ai[2] = 777 + k;
-        ai1[2] = 20;
-        ai[3] = 777 + k;  //532
-        ai1[3] = 11;
+        ai[0] = 764;
+        ai1[0] = 30;
+        ai[1] = 764;
+        ai1[1] = 39;
+        ai[2] = 764 + k;
+        ai1[2] = 39;
+        ai[3] = 764 + k;  //532
+        ai1[3] = 30;
         int l = 244;  //255, 74, 86
         int i1 = 244;
         int j1 = 11;
@@ -3753,14 +3759,14 @@ public class xtGraphics extends Panel implements Runnable {
        
         rd.setColor(new Color(l, i1, j1));
         rd.fillPolygon(ai, ai1, 4);
-        ai[0] = 777;
-        ai1[0] = 36;
-        ai[1] = 777;
-        ai1[1] = 45;
-        ai[2] = (int) (777F + f);
-        ai1[2] = 45;
-        ai[3] = (int) (777F + f);
-        ai1[3] = 36;
+        ai[0] = 764;
+        ai1[0] = 56;
+        ai[1] = 764;
+        ai1[1] = 65;
+        ai[2] = (int) (764F + f);
+        ai1[2] = 65;
+        ai[3] = (int) (764F + f);
+        ai1[3] = 56;
         //comeback
         l = 128;
 		if (f == 98F) {
