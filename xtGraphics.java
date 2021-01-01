@@ -5681,7 +5681,7 @@ public class xtGraphics extends Panel implements Runnable {
                 rd.drawString("maze!  GOOD LUCK!", 312, 147);
             }
         }
-        rd.drawImage(loadingmusic, 334, 180 + byte0, null);
+        rd.drawImage(loadingmusic, 0, 0 + byte0, null);
         rd.setFont(new Font("SansSerif", 1, 11));
         FontHandler.fMetrics = rd.getFontMetrics();
         if (!flag) {
